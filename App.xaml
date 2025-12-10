@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="TodoMauiMacApp.App"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:TodoMauiMacApp.Converters">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter"
+                                             TrueColor="LightGreen"
+                                             FalseColor="LightGray"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

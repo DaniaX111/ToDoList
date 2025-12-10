@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/daniilsmaznov/Documents/ToDoList/bin/Debug/net9.0-maccatalyst/maccatalyst-arm64/ToDoList.app

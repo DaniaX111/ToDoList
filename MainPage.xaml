@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TodoMauiMacApp.Views.MainPage"
+    x:Name="RootPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:TodoMauiMacApp.Models"
+    xmlns:viewmodels="clr-namespace:TodoMauiMacApp.ViewModels"
+    xmlns:converters="clr-namespace:TodoMauiMacApp.Converters"
+    Title="Список дел (macOS)"
+    BackgroundColor="#F5F5F5">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TodoListViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <!-- Поле ввода и кнопка Add -->
+        <Grid ColumnDefinitions="3*,1*" ColumnSpacing="12">
+            <Entry
+                Grid.Column="0"
+                Placeholder="Новая задача"
+                PlaceholderColor="#757575"
+                Text="{Binding NewTitle, Mode=TwoWay}"
+                FontSize="16"
+                BackgroundColor="White"
+                TextColor="#212121"
+                HeightRequest="40" />
+            <Button
+                Grid.Column="1"
+                Text="Добавить"
+                Command="{Binding AddCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="8"
+                FontSize="16"
+                HeightRequest="40" />
+        </Grid>
+
+        <!-- Подсказка для пользователя -->
+        <Label
+            Text="Свайп влево для удаления"
+            FontSize="14"
+            TextColor="#757575"
+            HorizontalOptions="Start"
+            Margin="0,0,0,4" />
+
+        <!-- Список задач -->
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:TodoItem">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Execute">
+                                <SwipeItem
+                                    Text="Удалить"
+                                    BackgroundColor="#E53935"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <!-- Рамка задачи, цвет зависит от IsCompleted -->
+                        <Frame
+                            Padding="6"
+                            Margin="0,2"
+                            CornerRadius="8"
+                            HasShadow="True"
+                            BackgroundColor="White"
+                            BorderColor="{Binding IsCompleted, Converter={StaticResource BoolToColorConverter}}"
+                            HorizontalOptions="Fill">
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  VerticalOptions="Center"
+                                  ColumnSpacing="8"
+                                  HorizontalOptions="Fill">
+                                <!-- Заголовок задачи -->
+                                <Label
+                                    Text="{Binding Title}"
+                                    VerticalOptions="Center"
+                                    FontSize="16"
+                                    TextColor="#212121"
+                                    LineBreakMode="TailTruncation" />
+
+                                <!-- Кнопка отметки выполнения справа -->
+                                <Button
+                                    Text="✓"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleCompleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#2196F3"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    WidthRequest="36"
+                                    HeightRequest="36"
+                                    HorizontalOptions="End" />
+                            </Grid>
+
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
