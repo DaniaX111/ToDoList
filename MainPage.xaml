@@ -6,8 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:TodoMauiMacApp.Models"
     xmlns:viewmodels="clr-namespace:TodoMauiMacApp.ViewModels"
-    xmlns:converters="clr-namespace:TodoMauiMacApp.Converters"
-    Title="Список дел (macOS)"
+    Title="Список дел ToDoList"
     BackgroundColor="#F5F5F5">
 
     <ContentPage.BindingContext>
@@ -41,9 +40,9 @@
         <!-- Подсказка для пользователя -->
         <Label
             Text="Свайп влево для удаления"
-            FontSize="14"
+            FontSize="16"
             TextColor="#757575"
-            HorizontalOptions="Start"
+            HorizontalOptions="Center"
             Margin="0,0,0,4" />
 
         <!-- Список задач -->
@@ -62,19 +61,19 @@
                         </SwipeView.RightItems>
 
                         <!-- Рамка задачи, цвет зависит от IsCompleted -->
-                        <Frame
-                            Padding="6"
-                            Margin="0,2"
-                            CornerRadius="8"
-                            HasShadow="True"
-                            BackgroundColor="White"
-                            BorderColor="{Binding IsCompleted, Converter={StaticResource BoolToColorConverter}}"
-                            HorizontalOptions="Fill">
+                        <Border
+                            Stroke="{Binding IsCompleted, Converter={StaticResource BoolToColorConverter}}"
+                            StrokeThickness="4"
+                            StrokeShape="RoundRectangle 8"
+                            Background="White"
+                            Margin="2"
+                            Padding="6">
 
                             <Grid ColumnDefinitions="*,Auto"
                                   VerticalOptions="Center"
                                   ColumnSpacing="8"
                                   HorizontalOptions="Fill">
+
                                 <!-- Заголовок задачи -->
                                 <Label
                                     Text="{Binding Title}"
@@ -83,7 +82,7 @@
                                     TextColor="#212121"
                                     LineBreakMode="TailTruncation" />
 
-                                <!-- Кнопка отметки выполнения справа -->
+                                <!-- Кнопка отметки -->
                                 <Button
                                     Text="✓"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ToggleCompleteCommand}"
@@ -94,9 +93,9 @@
                                     WidthRequest="36"
                                     HeightRequest="36"
                                     HorizontalOptions="End" />
-                            </Grid>
 
-                        </Frame>
+                            </Grid>
+                        </Border>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

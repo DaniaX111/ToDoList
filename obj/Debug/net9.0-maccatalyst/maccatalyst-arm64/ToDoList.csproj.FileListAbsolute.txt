@@ -294,3 +294,4 @@
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/ToDoList.csproj.Up2Date
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/ToDoList.genruntimeconfig.cache
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/ref/ToDoList.dll
+/Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-maccatalyst/maccatalyst-arm64/ToDoList.sourcelink.json

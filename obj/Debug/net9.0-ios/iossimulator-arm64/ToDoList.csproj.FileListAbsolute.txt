@@ -59,3 +59,4 @@
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-ios/iossimulator-arm64/ToDoList.AssemblyInfoInputs.cache
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-ios/iossimulator-arm64/ToDoList.AssemblyInfo.cs
 /Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-ios/iossimulator-arm64/ToDoList.csproj.CoreCompileInputs.cache
+/Users/daniilsmaznov/Documents/ToDoList/obj/Debug/net9.0-ios/iossimulator-arm64/ToDoList.sourcelink.json
