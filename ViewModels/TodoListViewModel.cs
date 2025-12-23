@@ -12,18 +12,18 @@ public class TodoListViewModel : BindableObject
     public string NewTitle
     {
         get => _newTitle;
-        set { _newTitle = value; OnPropertyChanged(); }
+        set { _newTitle = value; OnPropertyChanged(); AddCommand.ChangeCanExecute();}
     }
 
     public ObservableCollection<TodoItem> Items { get; set; } = new ObservableCollection<TodoItem>();
 
-    public ICommand AddCommand { get; }
+    public Command AddCommand { get; }
     public ICommand DeleteCommand { get; }
     public ICommand ToggleCompleteCommand { get; }
 
     public TodoListViewModel()
     {
-        AddCommand = new Command(AddItem);
+        AddCommand = new Command(AddItem, () => !string.IsNullOrEmpty(NewTitle));
         DeleteCommand = new Command<TodoItem>(DeleteItem);
         ToggleCompleteCommand = new Command<TodoItem>(ToggleComplete);
     }
